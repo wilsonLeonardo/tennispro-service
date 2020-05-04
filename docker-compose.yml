@@ -1,0 +1,27 @@
+version: "2.1"
+services:
+    api:
+        build:
+            context: ./docker
+            dockerfile: Dockerfile.api
+        privileged: true
+        tty: true
+        stdin_open: true
+        volumes:
+            - ./:/var/www/html
+        environment:
+            - "DB_HOST=postgres"
+            - "DB_PORT=5432"
+        ports:
+            - "80:80"
+    postgres:
+        image: postgres:12
+        restart: always
+        ports:
+            - "5431:5432"
+        volumes:
+            - ./docker/postgres-init:/docker-entrypoint-initdb.d
+        environment:
+            POSTGRES_USER: tennisPro
+            POSTGRES_PASSWORD: tennispro2000
+            POSTGRES_DB: TP
