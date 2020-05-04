@@ -4,11 +4,8 @@
 
 use Illuminate\Support\Str;
 
-$dbhost = $_SERVER['RDS_HOSTNAME'];
-$dbport = $_SERVER['RDS_PORT'];
-$dbname = $_SERVER['RDS_DB_NAME'];
-$username = $_SERVER['RDS_USERNAME'];
-$password = $_SERVER['RDS_PASSWORD'];
+var_dump($_SERVER['RDS_HOSTNAME']);
+var_dump($_ENV['RDS_HOSTNAME']);
 
 return [
 
@@ -23,7 +20,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -74,11 +71,11 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => $dbhost,
-            'port' => $dbport,
-            'database' =>$dbname,
-            'username' => $username,
-            'password' => $password,
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
