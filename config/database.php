@@ -4,7 +4,7 @@
 
 use Illuminate\Support\Str;
 
-define('RDS_HOSTNAME', $_SERVER['RDS_HOSTNAME']);
+dd($_SERVER);
 
 return [
 
@@ -50,7 +50,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => RDS_HOSTNAME,
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
